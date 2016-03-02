@@ -50,7 +50,12 @@ public class Login extends ActivityInstrumentationTestCase2<Activity> {
 	3) Click "Log In".
 	4) Wait for mistakes "You need to provide your email".*/
 	public void test0001EmptyEmailFieldEmptyPasswordField() throws Exception {
+		assertTrue("Wait for button (id: cc.blynk.R.id.login_button) failed.",
+				solo.waitForButtonById("cc.blynk.R.id.login_button", 5000));
 			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
+			solo.waitForActivity("LoginActivity");
+			assertTrue("Wait for button (id: cc.blynk.R.id.login_button) failed.",
+					solo.waitForButtonById("cc.blynk.R.id.login_button", 5000));
 			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
 			assertTrue(solo.searchText(Pattern.quote("You need to provide your email")));
 	}
@@ -61,8 +66,15 @@ public class Login extends ActivityInstrumentationTestCase2<Activity> {
 	4) Press the "Log In" button.
 	5) Wait for mistakes "You need to provide your email".*/
 	public void test0002EmptyEmailFieldWrongPassword() throws Exception {
+		assertTrue("Wait for button (id: cc.blynk.R.id.login_button) failed.",
+				solo.waitForButtonById("cc.blynk.R.id.login_button", 5000));
 			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
+			solo.waitForActivity("LoginActivity");
+			assertTrue("Wait for edit text (id: cc.blynk.R.id.edit_psw) failed.",
+					solo.waitForEditTextById("cc.blynk.R.id.edit_psw", 5000));
 			solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_psw"), "0000");
+			assertTrue("Wait for button (id: cc.blynk.R.id.login_button) failed.",
+					solo.waitForButtonById("cc.blynk.R.id.login_button", 5000));
 			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
 			assertTrue(solo.searchText(Pattern.quote("You need to provide your email")));
 	}
@@ -73,10 +85,17 @@ public class Login extends ActivityInstrumentationTestCase2<Activity> {
 	4) Press the "Log In" button.
 	5) Wait for mistakes "You need to provide your email".*/
 	public void test0003EmptyEmailFieldCorrectPassword() throws Exception {
-			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
-			solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_psw"), "me901989");
-			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
-			assertTrue(solo.searchText(Pattern.quote("You need to provide your email")));
+		assertTrue("Wait for button (id: cc.blynk.R.id.login_button) failed.",
+				solo.waitForButtonById("cc.blynk.R.id.login_button", 5000));
+		solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
+		solo.waitForActivity("LoginActivity");
+		assertTrue("Wait for edit text (id: cc.blynk.R.id.edit_psw) failed.",
+				solo.waitForEditTextById("cc.blynk.R.id.edit_psw", 5000));
+		solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_psw"), "me901989");
+		assertTrue("Wait for button (id: cc.blynk.R.id.login_button) failed.",
+				solo.waitForButtonById("cc.blynk.R.id.login_button", 5000));
+		solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
+		assertTrue(solo.searchText(Pattern.quote("You need to provide your email")));
 	}
 /*	№0004 test. In the field of e-mail is new address. The password field is empty.
 	1) Run the program.
@@ -85,8 +104,15 @@ public class Login extends ActivityInstrumentationTestCase2<Activity> {
 	4) Press the "Log In" button.
 	5) Expect mistakes "You need to provide your password".*/
 	public void test0004NewEmailEmptyPasswordField() throws Exception {
+		assertTrue("Wait for button (id: cc.blynk.R.id.login_button) failed.",
+				solo.waitForButtonById("cc.blynk.R.id.login_button", 5000));
 		solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
+		solo.waitForActivity("LoginActivity");
+		assertTrue("Wait for edit text (id: cc.blynk.R.id.edit_psw) failed.",
+				solo.waitForEditTextById("cc.blynk.R.id.edit_psw", 5000));
 		solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_login"), "roma_@mail.ru");
+		assertTrue("Wait for button (id: cc.blynk.R.id.login_button) failed.",
+				solo.waitForButtonById("cc.blynk.R.id.login_button", 5000));
 		solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
 		assertTrue(solo.searchText(Pattern.quote("You need to provide your password")));
 	}
@@ -97,10 +123,17 @@ public class Login extends ActivityInstrumentationTestCase2<Activity> {
 	4) Press the "Log In" button.
 	5) Expect mistakes "It's not a valid e-mail address".*/
 	public void test0005WrongEmailEmptyPasswordField() throws Exception {
-			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
-			solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_login"), "roma_kirichenko_");
-			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
-			assertTrue(solo.searchText(Pattern.quote("It's not a valid e-mail address")));
+		assertTrue("Wait for button (id: cc.blynk.R.id.login_button) failed.",
+				solo.waitForButtonById("cc.blynk.R.id.login_button", 5000));
+		solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
+		solo.waitForActivity("LoginActivity");
+		assertTrue("Wait for edit text (id: cc.blynk.R.id.edit_login) failed.",
+				solo.waitForEditTextById("cc.blynk.R.id.edit_login", 5000));
+		solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_login"), "roma_kirichenko_");
+		assertTrue("Wait for button (id: cc.blynk.R.id.login_button) failed.",
+				solo.waitForButtonById("cc.blynk.R.id.login_button", 5000));
+		solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
+		assertTrue(solo.searchText(Pattern.quote("It's not a valid e-mail address")));
 	}
 /*	№0006 Test. The field of e-mail is incorrect. The password field is incorrect.
 	1) Run the program.
@@ -110,11 +143,20 @@ public class Login extends ActivityInstrumentationTestCase2<Activity> {
 	5) Click the "Login" button.
 	6) Expect mistakes "It's not a valid e-mail address".*/
 	public void test0006WrongEmailWrongPassword() throws Exception {
-			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
-			solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_login"), "roma_kirichenko_");
-			solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_psw"), "0000");
-			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
-			assertTrue(solo.searchText(Pattern.quote("It's not a valid e-mail address")));
+		assertTrue("Wait for button (id: cc.blynk.R.id.login_button) failed.",
+				solo.waitForButtonById("cc.blynk.R.id.login_button", 5000));
+		solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
+		solo.waitForActivity("LoginActivity");
+		assertTrue("Wait for edit text (id: cc.blynk.R.id.edit_login) failed.",
+				solo.waitForEditTextById("cc.blynk.R.id.edit_login", 5000));
+		solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_login"), "roma_kirichenko_");
+		assertTrue("Wait for edit text (id: cc.blynk.R.id.edit_psw) failed.",
+				solo.waitForEditTextById("cc.blynk.R.id.edit_psw", 5000));
+		solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_psw"), "0000");
+		assertTrue("Wait for button (id: cc.blynk.R.id.login_button) failed.",
+				solo.waitForButtonById("cc.blynk.R.id.login_button", 5000));
+		solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
+		assertTrue(solo.searchText(Pattern.quote("It's not a valid e-mail address")));
 	}
 /*	№0007 Test. The field of e-mail is incorrect. The password field is correct.
 	1) Run the program.
@@ -124,11 +166,20 @@ public class Login extends ActivityInstrumentationTestCase2<Activity> {
 	5) Click the "Login" button.
 	6) Expect mistakes "It's not a valid e-mail address".*/
 	public void test0007WrongEmailCorrectPassword() throws Exception {
-			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
-			solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_login"), "roma_kirichenko_");
-			solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_psw"), "me901989");
-			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
-			assertTrue(solo.searchText(Pattern.quote("It's not a valid e-mail address")));
+		assertTrue("Wait for button (id: cc.blynk.R.id.login_button) failed.",
+				solo.waitForButtonById("cc.blynk.R.id.login_button", 5000));
+		solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
+		solo.waitForActivity("LoginActivity");
+		assertTrue("Wait for edit text (id: cc.blynk.R.id.edit_login) failed.",
+				solo.waitForEditTextById("cc.blynk.R.id.edit_login", 5000));
+		solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_login"), "roma_kirichenko_");
+		assertTrue("Wait for edit text (id: cc.blynk.R.id.edit_psw) failed.",
+				solo.waitForEditTextById("cc.blynk.R.id.edit_psw", 5000));
+		solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_psw"), "me901989");
+		assertTrue("Wait for button (id: cc.blynk.R.id.login_button) failed.",
+				solo.waitForButtonById("cc.blynk.R.id.login_button", 5000));
+		solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
+		assertTrue(solo.searchText(Pattern.quote("It's not a valid e-mail address")));
 	}
 	
 /*	№0008 test. The field of e-mail is correct. The password field is empty.
@@ -139,10 +190,17 @@ public class Login extends ActivityInstrumentationTestCase2<Activity> {
 	5) Expect mistakes "You need to provide your password".*/
 	
 	public void test0008CorrectEmailEmptyPasswordField() throws Exception {
-			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
-			solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_login"), "roma_kirichenko_@mail.ru");
-			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
-			assertTrue(solo.searchText(Pattern.quote("You need to provide your password")));
+		assertTrue("Wait for button (id: cc.blynk.R.id.login_button) failed.",
+				solo.waitForButtonById("cc.blynk.R.id.login_button", 5000));
+		solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
+		solo.waitForActivity("LoginActivity");
+		assertTrue("Wait for edit text (id: cc.blynk.R.id.edit_login) failed.",
+				solo.waitForEditTextById("cc.blynk.R.id.edit_login", 5000));
+		solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_login"), "roma_kirichenko_@mail.ru");
+		assertTrue("Wait for button (id: cc.blynk.R.id.login_button) failed.",
+				solo.waitForButtonById("cc.blynk.R.id.login_button", 5000));
+		solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
+		assertTrue(solo.searchText(Pattern.quote("You need to provide your password")));
 		
 	}
 /*	№0009 test. The field of e-mail is correct. The password field is incorrect.
@@ -153,11 +211,20 @@ public class Login extends ActivityInstrumentationTestCase2<Activity> {
 	5) Click the "Login" button.
 	6) Expect mistakes "Authentication failed. Please check your login and pass.".*/
 	public void test0009CorrectEmailWrongPassword() throws Exception {
-			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
-			solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_login"), "roma_kirichenko_@mail.ru");
-			solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_psw"), "0000");
-			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
-			assertTrue(solo.searchText(Pattern.quote("Authentication failed. Please check your login and pass.")));
+		assertTrue("Wait for button (id: cc.blynk.R.id.login_button) failed.",
+				solo.waitForButtonById("cc.blynk.R.id.login_button", 5000));
+		solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
+		solo.waitForActivity("LoginActivity");
+		assertTrue("Wait for edit text (id: cc.blynk.R.id.edit_login) failed.",
+				solo.waitForEditTextById("cc.blynk.R.id.edit_login", 5000));
+		solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_login"), "roma_kirichenko_@mail.ru");
+		assertTrue("Wait for edit text (id: cc.blynk.R.id.edit_psw) failed.",
+				solo.waitForEditTextById("cc.blynk.R.id.edit_psw", 5000));
+		solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_psw"), "0000");
+		assertTrue("Wait for button (id: cc.blynk.R.id.login_button) failed.",
+				solo.waitForButtonById("cc.blynk.R.id.login_button", 5000));
+		solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
+		assertTrue(solo.searchText(Pattern.quote("Authentication failed. Please check your login and pass.")));
 	
 	}
 /*	№0010 test. In the field of e-mail is new address. The password field is new.
@@ -168,9 +235,18 @@ public class Login extends ActivityInstrumentationTestCase2<Activity> {
 	5) Click the "Login" button.
 	6) Expect mistakes "It`s not a valid e-mail address".*/
 	public void test0010NewEmailNewPassword() throws Exception {
+		assertTrue("Wait for button (id: cc.blynk.R.id.login_button) failed.",
+				solo.waitForButtonById("cc.blynk.R.id.login_button", 5000));
 		solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
+		solo.waitForActivity("LoginActivity");
+		assertTrue("Wait for edit text (id: cc.blynk.R.id.edit_login) failed.",
+				solo.waitForEditTextById("cc.blynk.R.id.edit_login", 5000));
 		solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_login"), "roma_@mail.ru");
+		assertTrue("Wait for edit text (id: cc.blynk.R.id.edit_psw) failed.",
+				solo.waitForEditTextById("cc.blynk.R.id.edit_psw", 5000));
 		solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_psw"), "0000");
+		assertTrue("Wait for button (id: cc.blynk.R.id.login_button) failed.",
+				solo.waitForButtonById("cc.blynk.R.id.login_button", 5000));
 		solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
 		assertTrue(solo.searchText(Pattern.quote("User is not registered")));
 
@@ -187,14 +263,34 @@ public class Login extends ActivityInstrumentationTestCase2<Activity> {
 	8) Confirm the request for the logout by clicking "Logout".
 	9) See the main menu*/
 	public void test0011CorrectEmailCorrectPassword() throws Exception {
+		assertTrue("Wait for button (id: cc.blynk.R.id.login_button) failed.",
+				solo.waitForButtonById("cc.blynk.R.id.login_button", 5000));
 		solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
+		solo.waitForActivity("LoginActivity");
+		assertTrue("Wait for edit text (id: cc.blynk.R.id.edit_login) failed.",
+				solo.waitForEditTextById("cc.blynk.R.id.edit_login", 5000));
 		solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_login"), "roma_kirichenko_@mail.ru");
+		assertTrue("Wait for edit text (id: cc.blynk.R.id.edit_psw) failed.",
+				solo.waitForEditTextById("cc.blynk.R.id.edit_psw", 5000));
 		solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_psw"), "me901989");
-		solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
+		assertTrue("Wait for button (id: cc.blynk.R.id.login_button) failed.",
+				solo.waitForButtonById("cc.blynk.R.id.login_button", 5000));
+		solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button")); 
+		solo.waitForActivity("DashboardListActivity");
+		assertTrue(solo.searchText(Pattern.quote("Blynk")));
 		assertTrue(solo.searchText(Pattern.quote("Create New Project")));
+		assertTrue(solo.searchText(Pattern.quote("Scan QR Code")));
+		assertTrue("Wait for image button (index: 0) failed.", solo.waitForImageButton(0, 5000));
 		solo.clickOnImageButton(0);
 		assertTrue(solo.searchText(Pattern.quote("Are you sure you want to log out?")));
+		assertTrue(solo.searchText(Pattern.quote("Cancel")));
+		assertTrue(solo.searchText(Pattern.quote("Logout")));
+		assertTrue("Wait for text (id: cc.blynk.R.id.buttonDefaultPositive) failed.",
+				solo.waitForTextById("cc.blynk.R.id.buttonDefaultPositive", 5000));
 		solo.clickOnText((TextView) solo.findViewById("cc.blynk.R.id.buttonDefaultPositive"));
+		solo.waitForActivity("StartActivity");
+		assertTrue(solo.searchText(Pattern.quote("Create New Account")));
+		assertTrue(solo.searchText(Pattern.quote("Log In")));
 		assertTrue(solo.searchText(Pattern.quote("Why do I need an account?")));
 }
 }
