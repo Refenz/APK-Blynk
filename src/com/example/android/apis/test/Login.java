@@ -44,74 +44,86 @@ public class Login extends ActivityInstrumentationTestCase2<Activity> {
 		solo.tearDown();
 		super.tearDown();
 	}
-/*	№1 test. The fields e-mail and password empty.
+/*	№0001 test. The fields e-mail and password is empty.
 	1) Run the program's.
 	2) Press the "Log In".
 	3) Click "Log In".
 	4) Wait for mistakes "You need to provide your email".*/
-	public void test1EmptyEmailFieldEmptyPasswordField() throws Exception {
+	public void test0001EmptyEmailFieldEmptyPasswordField() throws Exception {
 			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
 			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
 			assertTrue(solo.searchText(Pattern.quote("You need to provide your email")));
 	}
-/*	№2 test. E-mail Field empty. The password field is incorrect.
+/*	№0002 test. E-mail Field empty. The password field is incorrect.
 	1) Run the program.
 	2) Press the "Log In" button.
 	3) Enter in the "Password" incorrect password - "0000".
 	4) Press the "Log In" button.
 	5) Wait for mistakes "You need to provide your email".*/
-	public void test2EmptyEmailFieldWrongPassword() throws Exception {
+	public void test0002EmptyEmailFieldWrongPassword() throws Exception {
 			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
 			solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_psw"), "0000");
 			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
 			assertTrue(solo.searchText(Pattern.quote("You need to provide your email")));
 	}
-/*	№3 test. E-mail Field empty. The password field is correct.
+/*	№0003 test. E-mail Field empty. The password field is correct.
 	1) Run the program.
 	2) Press the "Log In" button.
 	3) Enter in the "Password" field the correct password - "me901989".
 	4) Press the "Log In" button.
 	5) Wait for mistakes "You need to provide your email".*/
-	public void test3EmptyEmailFieldCorrectPassword() throws Exception {
+	public void test0003EmptyEmailFieldCorrectPassword() throws Exception {
 			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
 			solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_psw"), "me901989");
 			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
 			assertTrue(solo.searchText(Pattern.quote("You need to provide your email")));
 	}
-/*	№4 test. The field of e-mail is incorrect. The password field empty.
+/*	№0004 test. In the field of e-mail is new address. The password field is empty.
+	1) Run the program.
+	2) Press the "Log In" button.
+	3) Enter in the field "e-mail" valid username - "roma_@mail.ru".
+	4) Press the "Log In" button.
+	5) Expect mistakes "You need to provide your password".*/
+	public void test0004NewEmailEmptyPasswordField() throws Exception {
+		solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
+		solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_login"), "roma_@mail.ru");
+		solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
+		assertTrue(solo.searchText(Pattern.quote("You need to provide your password")));
+	}
+/*	№0005 test. The field of e-mail is incorrect. The password field is empty.
 	1) Run the program.
 	2) Press the "Log In" button.
 	3) Enter in the field "e-mail" valid username - "roma_kirichenko_@mail.ru".
 	4) Press the "Log In" button.
 	5) Expect mistakes "It's not a valid e-mail address".*/
-	public void test4WrongEmailEmptyPasswordField() throws Exception {
+	public void test0005WrongEmailEmptyPasswordField() throws Exception {
 			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
 			solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_login"), "roma_kirichenko_");
 			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
 			assertTrue(solo.searchText(Pattern.quote("It's not a valid e-mail address")));
 	}
-/*	№5 Test. The field of e-mail is incorrect. The password field is incorrect.
+/*	№0006 Test. The field of e-mail is incorrect. The password field is incorrect.
 	1) Run the program.
 	2) Press the "Login" button.
 	3) Enter in the field "e-mail" valid username - "roma_kirichenko_@mail.ru".
 	4) Enter in the "Password" incorrect password - "0000".
 	5) Click the "Login" button.
 	6) Expect mistakes "It's not a valid e-mail address".*/
-	public void test5WrongEmailWrongPassword() throws Exception {
+	public void test0006WrongEmailWrongPassword() throws Exception {
 			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
 			solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_login"), "roma_kirichenko_");
 			solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_psw"), "0000");
 			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
 			assertTrue(solo.searchText(Pattern.quote("It's not a valid e-mail address")));
 	}
-/*	№6 Test. The field of e-mail is incorrect. The password field is correct.
+/*	№0007 Test. The field of e-mail is incorrect. The password field is correct.
 	1) Run the program.
 	2) Press the "Login" button.
 	3) Enter in the field "e-mail" valid username - "roma_kirichenko_@mail.ru".
 	4) Enter in the "Password" correct password - "me901989".
 	5) Click the "Login" button.
 	6) Expect mistakes "It's not a valid e-mail address".*/
-	public void test6WrongEmailCorrectPassword() throws Exception {
+	public void test0007WrongEmailCorrectPassword() throws Exception {
 			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
 			solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_login"), "roma_kirichenko_");
 			solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_psw"), "me901989");
@@ -119,28 +131,28 @@ public class Login extends ActivityInstrumentationTestCase2<Activity> {
 			assertTrue(solo.searchText(Pattern.quote("It's not a valid e-mail address")));
 	}
 	
-/*	№7 test. The field of e-mail is correct. The password field empty.
+/*	№0008 test. The field of e-mail is correct. The password field is empty.
 	1) Run the program.
 	2) Press the "Login" button.
 	3) Enter in the field "e-mail" valid username - "roma_kirichenko_@mail.ru".
 	4) Click the "Login" button.
 	5) Expect mistakes "You need to provide your password".*/
 	
-	public void test7CorrectEmailEmptyPasswordField() throws Exception {
+	public void test0008CorrectEmailEmptyPasswordField() throws Exception {
 			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
 			solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_login"), "roma_kirichenko_@mail.ru");
 			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
 			assertTrue(solo.searchText(Pattern.quote("You need to provide your password")));
 		
 	}
-/*	№8 test. The field of e-mail is correct. The password field is incorrect.
+/*	№0009 test. The field of e-mail is correct. The password field is incorrect.
 	1) Run the program.
 	2) Press the "Login" button.
 	3) Enter in the field "e-mail" valid username - "roma_kirichenko_@mail.ru".
 	4) Enter in the "Password" incorrect password - "0000".
 	5) Click the "Login" button.
 	6) Expect mistakes "Authentication failed. Please check your login and pass.".*/
-	public void test8CorrectEmailWrongPassword() throws Exception {
+	public void test0009CorrectEmailWrongPassword() throws Exception {
 			solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
 			solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_login"), "roma_kirichenko_@mail.ru");
 			solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_psw"), "0000");
@@ -148,8 +160,23 @@ public class Login extends ActivityInstrumentationTestCase2<Activity> {
 			assertTrue(solo.searchText(Pattern.quote("Authentication failed. Please check your login and pass.")));
 	
 	}
+/*	№0010 test. In the field of e-mail is new address. The password field is new.
+	1) Run the program.
+	2) Press the "Login" button.
+	3) Enter in the field "e-mail" new username - "roma_@mail.ru".
+	4) Enter in the "Password" incorrect password - "0000".
+	5) Click the "Login" button.
+	6) Expect mistakes "It`s not a valid e-mail address".*/
+	public void test0010NewEmailNewPassword() throws Exception {
+		solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
+		solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_login"), "roma_@mail.ru");
+		solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_psw"), "0000");
+		solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
+		assertTrue(solo.searchText(Pattern.quote("User is not registered")));
+
+}
 	
-/*	№9 test. The field of e-mail is correct. The password field is correct.
+/*	№0011 test. The field of e-mail is correct. The password field is correct.
 	1) Run the program.
 	2) Press the "Login" button.
 	3) Enter in the field "e-mail" valid username - "roma_kirichenko_@mail.ru".
@@ -159,7 +186,7 @@ public class Login extends ActivityInstrumentationTestCase2<Activity> {
 	7) Press the logout button and see the icon with the text "Are you sure you want to log out?".
 	8) Confirm the request for the logout by clicking "Logout".
 	9) See the main menu*/
-	public void test9CorrectEmailCorrectPassword() throws Exception {
+	public void test0011CorrectEmailCorrectPassword() throws Exception {
 		solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
 		solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_login"), "roma_kirichenko_@mail.ru");
 		solo.enterText((EditText) solo.findViewById("cc.blynk.R.id.edit_psw"), "me901989");
