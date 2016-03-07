@@ -38,21 +38,24 @@ public class Login extends ActivityInstrumentationTestCase2<Activity> {
 	public void setUp() throws Exception {
 		super.setUp();
 		solo = new ExtSolo(getInstrumentation(), getActivity(), this.getClass().getCanonicalName(), getName());
-// 		PreC (Logout if User has been Login)
-		 	boolean string1 = true;
-		 	boolean string2 = solo.searchText(Pattern.quote("Create New Project"));
-		 	if(string1 == string2) {
-		 		solo.clickOnImageButton(0);
-		 		solo.clickOnText((TextView) solo.findViewById("cc.blynk.R.id.buttonDefaultPositive"));
+// 		PreC (Logout if User was Login)
+		if(solo.searchText(Pattern.quote("Create New Project"))) {
+			solo.clickOnImageButton(0);
+		 	solo.clickOnText((TextView) solo.findViewById("cc.blynk.R.id.buttonDefaultPositive"));
 			}
 		 }
 
 	@Override
 	public void tearDown() throws Exception {
+//		PostC (Logout if the User is Login)
+	 	if(solo.searchText(Pattern.quote("Create New Project"))) {
+			solo.clickOnImageButton(0);
+			solo.clickOnText((TextView) solo.findViewById("cc.blynk.R.id.buttonDefaultPositive"));
+	 		}
 		solo.finishOpenedActivities();
 		solo.tearDown();
 		super.tearDown();
-	}
+		}
 	
 //№0001 test. The fields e-mail and password is empty.
 	public void test0001EmptyEmailFieldEmptyPasswordField() throws Exception {
@@ -275,18 +278,6 @@ public class Login extends ActivityInstrumentationTestCase2<Activity> {
 			assertTrue(solo.searchText(Pattern.quote("Blynk")));
 			assertTrue(solo.searchText(Pattern.quote("Create New Project")));
 			assertTrue(solo.searchText(Pattern.quote("Scan QR Code")));
-//		PostC
-			assertTrue("Wait for image button (index: 0) failed.", solo.waitForImageButton(0, 5000));
-			solo.clickOnImageButton(0);
-			assertTrue(solo.searchText(Pattern.quote("Are you sure you want to log out?")));
-			assertTrue(solo.searchText(Pattern.quote("Cancel")));
-			assertTrue(solo.searchText(Pattern.quote("Logout")));
-			assertTrue("Wait for text (id: cc.blynk.R.id.buttonDefaultPositive) failed.",
-					solo.waitForTextById("cc.blynk.R.id.buttonDefaultPositive", 5000));
-				solo.clickOnText((TextView) solo.findViewById("cc.blynk.R.id.buttonDefaultPositive"));
-			solo.waitForActivity("StartActivity");
-			assertTrue(solo.searchText(Pattern.quote("Create New Account")));
-			assertTrue(solo.searchText(Pattern.quote("Log In")));
-			assertTrue(solo.searchText(Pattern.quote("Why do I need an account?")));
+
 }
 }
