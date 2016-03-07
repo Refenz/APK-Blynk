@@ -10,11 +10,9 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.app.Activity;
 import junit.framework.AssertionFailedError;
 import com.bitbar.recorder.extensions.ExtSolo;
-
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import java.util.regex.Pattern;
 
 @SuppressWarnings("unused")
@@ -40,7 +38,14 @@ public class Login extends ActivityInstrumentationTestCase2<Activity> {
 	public void setUp() throws Exception {
 		super.setUp();
 		solo = new ExtSolo(getInstrumentation(), getActivity(), this.getClass().getCanonicalName(), getName());
-	}
+// 		PreC (Logout if User has been Login)
+		 	boolean string1 = true;
+		 	boolean string2 = solo.searchText(Pattern.quote("Create New Project"));
+		 	if(string1 == string2) {
+		 		solo.clickOnImageButton(0);
+		 		solo.clickOnText((TextView) solo.findViewById("cc.blynk.R.id.buttonDefaultPositive"));
+			}
+		 }
 
 	@Override
 	public void tearDown() throws Exception {
@@ -52,7 +57,6 @@ public class Login extends ActivityInstrumentationTestCase2<Activity> {
 //№0001 test. The fields e-mail and password is empty.
 	public void test0001EmptyEmailFieldEmptyPasswordField() throws Exception {
 //		PreC
-			
 			assertTrue("Wait for button (id: cc.blynk.R.id.login_button) failed.",
 					solo.waitForButtonById("cc.blynk.R.id.login_button", 5000));
 				solo.clickOnButton((Button) solo.findViewById("cc.blynk.R.id.login_button"));
